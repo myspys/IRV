@@ -338,6 +338,7 @@ var Irv = {
             result.append('Next up, taking away '+winner[0]+'...<br/>');
             result.append("=".repeat(40)+'<br/>');
         }
+        result.append('Only '+candidateNames[0]+' left.<br/>');
         RankedCandidates.push(candidateNames[0]); // Add the last candidate left
         return RankedCandidates;
     }
