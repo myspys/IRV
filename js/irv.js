@@ -307,5 +307,23 @@ var Irv = {
 
             round++;
         } while(true);
+    },
+    
+    rankAllCandidates: function(candidateNames, ballots, tiebreakerSecondary, threshold) {
+        
+        var allCandidates = candidateNames.slice();
+        var allBallots = ballots;
+        var numberOfIterations = allCandidates.length - 1;
+        console.log(allCandidates);
+
+        var winner = Irv.calculateWinner(candidateNames, ballots, tiebreakerSecondary, threshold);
+        var wIndex = allCandidates.indexOf(winner[0]);
+        console.log("winner[0]", winner[0]);
+        console.log("wIndex", wIndex);
+        console.log(allCandidates);
+        
+        for(var i = 0; i < numberOfIterations; i++){
+            
+        }
     }
 };
