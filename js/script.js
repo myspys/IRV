@@ -25,7 +25,7 @@ $(function() {
 
         if (Irv.validateInput(candidateNames, ballots, incompleteBallots, threshold)) {
             var rankedCandidates = Irv.rankAllCandidates(candidateNames, ballots, tiebreakerSecondary, threshold);
-            console.log(rankedCandidates);
+            console.log("rankedCandidates", rankedCandidates);
         }
 
         $('html, body').animate({scrollTop: $(document).height()}, 'slow');
