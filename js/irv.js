@@ -339,7 +339,8 @@ var Irv = {
             console.log(candidateNames);
             console.log(ballots);
             console.log("RankedCandidates", RankedCandidates);
-            return RankedCandidates;
+            
         }
+        return RankedCandidates;
     }
 };
