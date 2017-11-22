@@ -311,19 +311,35 @@ var Irv = {
     
     rankAllCandidates: function(candidateNames, ballots, tiebreakerSecondary, threshold) {
         
-        var allCandidates = candidateNames.slice();
-        var allBallots = ballots;
-        var numberOfIterations = allCandidates.length - 1;
-        console.log(allCandidates);
-
-        var winner = Irv.calculateWinner(candidateNames, ballots, tiebreakerSecondary, threshold);
-        var wIndex = allCandidates.indexOf(winner[0]);
-        console.log("winner[0]", winner[0]);
-        console.log("wIndex", wIndex);
-        console.log(allCandidates);
+        var RankedCandidates = [];
         
-        for(var i = 0; i < numberOfIterations; i++){
+        var numberOfIterations = candidateNames.length-1;
+        console.log(candidateNames);
+
+        for(var n = 0; n < numberOfIterations; n++){
+            var copyOfCandidates = candidateNames.slice();
+            var copyOfBallots = [];
+            for (var i = 0; i < ballots.length; i++)
+                copyOfBallots[i] = ballots[i].slice();
             
+            var winner = Irv.calculateWinner(copyOfCandidates, copyOfBallots, tiebreakerSecondary, threshold);
+            var wIndex = candidateNames.indexOf(winner[0]);
+            RankedCandidates.push(winner[0]);
+            
+            for (var i = 0; i < ballots.length; i++){
+                ballots[i].splice(ballots[i].indexOf(wIndex), 1);
+                for (var j = 0; j < ballots[i].length; j++)
+                    if (ballots[i][j] > wIndex)
+                        ballots[i][j]--;
+            }
+            candidateNames.splice(wIndex, 1);
+            
+            console.log("winner[0]", winner[0]);
+            console.log("wIndex", wIndex);
+            console.log(candidateNames);
+            console.log(ballots);
+            console.log("RankedCandidates", RankedCandidates);
+            return RankedCandidates;
         }
     }
 };
