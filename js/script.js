@@ -17,7 +17,7 @@ $(function() {
         $('#submit').html('Re-Submit').removeClass('btn-primary').addClass('btn-success');
         $('#result-group').show();
 
-        var candidateNames = $('#candidates').val().replace('\r', '');.split('\n');
+        var candidateNames = $('#candidates').val().replace('\r', '').split('\n');
         var ballots = Irv.readBallots($('#ballots').val());
         var incompleteBallots = $('#incompleteBallots').is(':checked');
         var tiebreakerSecondary = $('#tiebreakerSecondary').is(":checked");
