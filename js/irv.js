@@ -327,9 +327,11 @@ var Irv = {
             RankedCandidates.push(winner[0]);
             
             for (var i = 0; i < ballots.length; i++){
-                ballots[i].splice(ballots[i].indexOf(wIndex), 1);
+                var removed_ranking = ballots[i].splice(wIndex, 1);
+                if(removed_ranking[0] == 0)
+                    continue;
                 for (var j = 0; j < ballots[i].length; j++)
-                    if (ballots[i][j] > wIndex)
+                    if (ballots[i][j] > removed_ranking[0])
                         ballots[i][j]--;
             }
             candidateNames.splice(wIndex, 1);
