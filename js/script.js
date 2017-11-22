@@ -26,6 +26,11 @@ $(function() {
         if (Irv.validateInput(candidateNames, ballots, incompleteBallots, threshold)) {
             var rankedCandidates = Irv.rankAllCandidates(candidateNames, ballots, tiebreakerSecondary, threshold);
             console.log("rankedCandidates", rankedCandidates);
+            
+            for(var i=0; i<rankedCandidates.length; i++){
+                $("#ranking ol").append("<li>" + rankedCandidates[i] + "</li>");
+            }
+            
         }
 
         $('html, body').animate({scrollTop: $(document).height()}, 'slow');
