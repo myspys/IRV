@@ -9,7 +9,7 @@ var Irv = {
     readBallots: function(ballotsText) {
         var ballots = ballotsText.split('\n');
         for (var i = 0; i < ballots.length; i++) {
-            ballots[i] = ballots[i].replace(/\s+/g, '').split(',');
+            ballots[i] = ballots[i].replace(/\s+/g, '').split('\t');
             for (var j = 0; j < ballots[i].length; j++) {
                 ballots[i][j] = ballots[i][j] === '' ? 0 : parseInt(ballots[i][j]);
             }
