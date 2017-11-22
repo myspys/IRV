@@ -334,13 +334,15 @@ var Irv = {
             }
             candidateNames.splice(wIndex, 1);
             
+            result.append('<hr/><b>Next up...</b>');
+            
             console.log("winner[0]", winner[0]);
             console.log("wIndex", wIndex);
             console.log(candidateNames);
             console.log(ballots);
             console.log("RankedCandidates", RankedCandidates);
-            
         }
+        RankedCandidates.push(candidateNames[0]); // Add the last candidate left
         return RankedCandidates;
     }
 };
