@@ -24,7 +24,8 @@ $(function() {
         var threshold = $('#threshold').val();
 
         if (Irv.validateInput(candidateNames, ballots, incompleteBallots, threshold)) {
-            Irv.calculateWinner(candidateNames, ballots, tiebreakerSecondary, threshold);
+            Irv.rankAllCandidates(candidateNames, ballots, tiebreakerSecondary, threshold);
+            //Irv.calculateWinner(candidateNames, ballots, tiebreakerSecondary, threshold);
         }
 
         $('html, body').animate({scrollTop: $(document).height()}, 'slow');
