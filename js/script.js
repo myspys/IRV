@@ -20,11 +20,15 @@ $(function() {
         var candidateNames = $('#candidates').val().replace('\r', '').split('\n');
         var ballots = Irv.readBallots($('#ballots').val());
         var incompleteBallots = $('#incompleteBallots').is(':checked');
-        var tiebreakerSecondary = $('#tiebreakerSecondary').is(":checked");
+        var tiebreaker = 1;
+        if($('#tiebreakerSecondary').is(":checked"))
+            tiebreaker = 2;
+        elif($('#tiebreakerStop').is(":checked"))
+            tiebreaker = 3;
         var threshold = $('#threshold').val();
 
         if (Irv.validateInput(candidateNames, ballots, incompleteBallots, threshold)) {
-            var rankedCandidates = Irv.rankAllCandidates(candidateNames, ballots, tiebreakerSecondary, threshold);
+            var rankedCandidates = Irv.rankAllCandidates(candidateNames, ballots, tiebreaker, threshold);
             
             $("#ranking ol").empty();
             for(var i=0; i<rankedCandidates.length; i++){
