@@ -23,7 +23,7 @@ $(function() {
         var tiebreaker = 1;
         if($('#tiebreakerSecondary').is(":checked"))
             tiebreaker = 2;
-        elif($('#tiebreakerStop').is(":checked"))
+        else if($('#tiebreakerStop').is(":checked"))
             tiebreaker = 3;
         var threshold = $('#threshold').val();
 
