@@ -302,7 +302,7 @@ var Irv = {
                     result.append('TIE, STOPPING!<br/>');
                     result.append('Tied: ');
                     for(var ii = 0; ii<roundLosers.length; ii++){
-                        result.append(candidateNames[roundLosers[ii]]);
+                        result.append(candidateNames[roundLosers[ii]]+', ');
                     }
                     result.append('<br/>');
                     result.append("=".repeat(50)+'<br/>');
