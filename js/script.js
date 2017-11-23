@@ -25,6 +25,8 @@ $(function() {
             tiebreaker = 2;
         else if($('#tiebreakerStop').is(":checked"))
             tiebreaker = 3;
+        else if($('#tiebreakerStop2').is(":checked"))
+            tiebreaker = 4;
         var threshold = $('#threshold').val();
 
         if (Irv.validateInput(candidateNames, ballots, incompleteBallots, threshold)) {
