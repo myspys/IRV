@@ -302,12 +302,13 @@ var Irv = {
                     result.append('TIE, STOPPING!<br/>');
                     result.append('Tied: ');
                     for(var ii = 0; ii<roundLosers.length; ii++){
-                        result.append(candidateNames[roundLoser[ii]]);
+                        result.append(candidateNames[roundLosers[ii]]);
                     }
                     result.append('<br/>');
                     result.append("=".repeat(50)+'<br/>');
                     result.append("=".repeat(40)+'<br/>');
-                    result.append("=".repeat(30)+'<br/>');     
+                    result.append("=".repeat(30)+'<br/>');
+                    return null;
                 } else {
                     var randomIndex = Math.round(Math.random() * (roundLosers.length - 1));
                     roundLoser = roundLosers[randomIndex];
@@ -338,6 +339,8 @@ var Irv = {
                 copyOfBallots[i] = ballots[i].slice();
             
             var winner = Irv.calculateWinner(copyOfCandidates, copyOfBallots, tiebreaker, threshold);
+            if(winner == null)
+                break;
             var wIndex = candidateNames.indexOf(winner[0]);
             RankedCandidates.push(winner[0]);
             
@@ -355,8 +358,10 @@ var Irv = {
             result.append('Next up, taking away '+winner[0]+'...<br/>');
             result.append("=".repeat(40)+'<br/>');
         }
-        result.append('Only '+candidateNames[0]+' left.<br/>');
-        RankedCandidates.push(candidateNames[0]); // Add the last candidate left
+        if(candidateNames.length == 1){
+            result.append('Only '+candidateNames[0]+' left.<br/>');
+            RankedCandidates.push(candidateNames[0]); // Add the last candidate left
+        }
         return RankedCandidates;
     }
 };
