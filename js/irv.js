@@ -278,7 +278,7 @@ var Irv = {
                 return Irv.candidateIndexToName(candidateNames, roundWinners);
             }
 
-            if (roundLosers.length > 1 && tiebreaker==2) {
+            if (roundLosers.length > 1 && (tiebreaker==2 || tiebreaker==4)) {
                 result.append('<br />');
                 var n = 2;
                 while (roundLosers.length > 1 && n <= candidateNames.length) {
@@ -295,7 +295,7 @@ var Irv = {
             }
 
             if (roundLosers.length > 1) {
-                if(tiebreaker==3){
+                if(tiebreaker>=3){
                     result.append("=".repeat(30)+'<br/>');
                     result.append("=".repeat(40)+'<br/>');
                     result.append("=".repeat(50)+'<br/>');
