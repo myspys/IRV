@@ -222,7 +222,7 @@ var Irv = {
         return candidatesIndices;
     },
 
-    calculateWinner: function(candidateNames, ballots, tiebreakerSecondary, threshold) {
+    calculateWinner: function(candidateNames, ballots, tiebreaker, threshold) {
         var round = 0;
 
         ballots = Irv.removeEmptyBallots(ballots);
@@ -278,7 +278,7 @@ var Irv = {
                 return Irv.candidateIndexToName(candidateNames, roundWinners);
             }
 
-            if (roundLosers.length > 1 && tiebreakerSecondary) {
+            if (roundLosers.length > 1 && tiebreaker==2) {
                 result.append('<br />');
                 var n = 2;
                 while (roundLosers.length > 1 && n <= candidateNames.length) {
@@ -295,9 +295,24 @@ var Irv = {
             }
 
             if (roundLosers.length > 1) {
-                var randomIndex = Math.round(Math.random() * (roundLosers.length - 1));
-                roundLoser = roundLosers[randomIndex];
-                result.append('<br />Tiebreaker: ' + candidateNames[roundLoser] + ' was randomly selected as the loser of the round.<br />');
+                if(tiebreaker==3){
+                    result.append("=".repeat(30)+'<br/>');
+                    result.append("=".repeat(40)+'<br/>');
+                    result.append("=".repeat(50)+'<br/>');
+                    result.append('TIE, STOPPING!<br/>');
+                    result.append('Tied: ');
+                    for(var ii = 0; ii<roundLosers.length; ii++){
+                        result.append(candidateNames[roundLoser[ii]]);
+                    }
+                    result.append('<br/>');
+                    result.append("=".repeat(50)+'<br/>');
+                    result.append("=".repeat(40)+'<br/>');
+                    result.append("=".repeat(30)+'<br/>');     
+                } else {
+                    var randomIndex = Math.round(Math.random() * (roundLosers.length - 1));
+                    roundLoser = roundLosers[randomIndex];
+                    result.append('<br />Tiebreaker: ' + candidateNames[roundLoser] + ' was randomly selected as the loser of the round.<br />');
+                }
             }
 
             candidateNames = Irv.removeLoserCandidate(candidateNames, roundLoser);
@@ -309,7 +324,7 @@ var Irv = {
         } while(true);
     },
     
-    rankAllCandidates: function(candidateNames, ballots, tiebreakerSecondary, threshold) {
+    rankAllCandidates: function(candidateNames, ballots, tiebreaker, threshold) {
         
         var RankedCandidates = [];
         
@@ -322,7 +337,7 @@ var Irv = {
             for (var i = 0; i < ballots.length; i++)
                 copyOfBallots[i] = ballots[i].slice();
             
-            var winner = Irv.calculateWinner(copyOfCandidates, copyOfBallots, tiebreakerSecondary, threshold);
+            var winner = Irv.calculateWinner(copyOfCandidates, copyOfBallots, tiebreaker, threshold);
             var wIndex = candidateNames.indexOf(winner[0]);
             RankedCandidates.push(winner[0]);
             
