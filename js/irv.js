@@ -338,10 +338,32 @@ var Irv = {
             for (var i = 0; i < ballots.length; i++)
                 copyOfBallots[i] = ballots[i].slice();
             
-            var winner = Irv.calculateWinner(copyOfCandidates, copyOfBallots, tiebreaker, threshold);
-            if(winner == null)
+            var winners = Irv.calculateWinner(copyOfCandidates, copyOfBallots, tiebreaker, threshold);
+            if(winners == null)
                 break;
-            var wIndex = candidateNames.indexOf(winner[0]);
+            var winner = winners[0];
+            if(winners.length > 1){
+                if(tiebreaker>=3){
+                    result.append("=".repeat(30)+'<br/>');
+                    result.append("=".repeat(40)+'<br/>');
+                    result.append("=".repeat(50)+'<br/>');
+                    result.append('TIE, STOPPING!<br/>');
+                    result.append('Tied: ');
+                    for(var ii = 0; ii<winners.length; ii++){
+                        result.append(winners[ii]+', ');
+                    }
+                    result.append('<br/>');
+                    result.append("=".repeat(50)+'<br/>');
+                    result.append("=".repeat(40)+'<br/>');
+                    result.append("=".repeat(30)+'<br/>');
+                    break;
+                } else {
+                    var randomIndex = Math.round(Math.random() * (winners.length - 1));
+                    winner = winners[randomIndex];
+                    result.append('<br />Tiebreaker: ' + winner + ' was randomly selected as the winner of the round.<br />');
+                }
+            }
+            var wIndex = candidateNames.indexOf(winners[0]);
             RankedCandidates.push(winner[0]);
             
             for (var i = 0; i < ballots.length; i++){
