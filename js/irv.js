@@ -364,7 +364,7 @@ var Irv = {
                 }
             }
             var wIndex = candidateNames.indexOf(winners[0]);
-            RankedCandidates.push(winner[0]);
+            RankedCandidates.push(winner);
             
             for (var i = 0; i < ballots.length; i++){
                 var removed_ranking = ballots[i].splice(wIndex, 1);
