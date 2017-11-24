@@ -363,7 +363,7 @@ var Irv = {
                     result.append('<br />Tiebreaker: ' + winner + ' was randomly selected as the winner of the round.<br />');
                 }
             }
-            var wIndex = candidateNames.indexOf(winners[0]);
+            var wIndex = candidateNames.indexOf(winner);
             RankedCandidates.push(winner);
             
             for (var i = 0; i < ballots.length; i++){
@@ -377,7 +377,7 @@ var Irv = {
             candidateNames.splice(wIndex, 1);
             
             result.append("=".repeat(40)+'<br/>');
-            result.append('Next up, taking away '+winner[0]+'...<br/>');
+            result.append('Next up, taking away '+winner+'...<br/>');
             result.append("=".repeat(40)+'<br/>');
         }
         if(candidateNames.length == 1){
